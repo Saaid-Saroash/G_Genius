@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G_Genius Canva Academy</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lilita+One&display=swap');
+
+    :root{
+      --bg:#173735;
+      --panel:rgba(255,255,255,.07);
+      --border:rgba(255,255,255,.12);
+      --text:#f8f5f2;
+      --muted:rgba(248,245,242,.74);
+      --pink:#f8bfd0;
+      --pink2:#ef4da2;
+      --blue:#1f4fff;
+      --mint:#a9f0d9;
+      --gold:#dfc25c;
+      --shadow:0 18px 45px rgba(0,0,0,.28);
+      --radius:28px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(248,191,208,.08), transparent 22%),
+        radial-gradient(circle at top right, rgba(169,240,217,.08), transparent 22%),
+        linear-gradient(180deg, #163331, var(--bg));
+    }
+    a{text-decoration:none;color:inherit}
+    button,input,textarea,select{font:inherit}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 18px}
+
+    .nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(18px);background:rgba(18,42,40,.88);border-bottom:1px solid var(--border)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 0;gap:14px}
+    .brand{display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+    .logo{width:50px;height:50px;border-radius:18px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,var(--pink),var(--mint));box-shadow:var(--shadow)}
+    .logo img{width:100%;height:100%;object-fit:cover;display:block}
+    .logo span{font-family:'Lilita One', cursive;font-weight:900;font-size:20px;color:#173735}
+    .brand h1{margin:0;font-size:14px;letter-spacing:.28em;text-transform:uppercase;color:#ffdfe8}
+    .brand p{margin:4px 0 0;font-size:12px;color:var(--muted)}
+
+    .menu-btn{width:46px;height:46px;border-radius:16px;border:1px solid var(--border);background:rgba(255,255,255,.06);display:grid;place-items:center;cursor:pointer}
+    .menu-btn span,.menu-btn span:before,.menu-btn span:after{content:"";display:block;width:20px;height:2px;background:#fff;border-radius:2px;position:relative}
+    .menu-btn span:before{position:absolute;top:-6px}.menu-btn span:after{position:absolute;top:6px}
+
+    .nav-links{display:none;gap:14px;align-items:center}
+    .nav-links button{padding:11px 16px;border-radius:999px;font-weight:700;font-size:14px;background:rgba(255,255,255,.06);color:#fff;border:1px solid var(--border);cursor:pointer}
+    .nav-links button:hover{background:rgba(255,255,255,.1)}
+    .mobile-menu{display:none;padding:0 0 16px}
+    .mobile-menu.open{display:block}
+    .mobile-menu button{width:100%;display:block;margin-top:10px;text-align:left;padding:14px 16px;border-radius:18px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:#fff;font-weight:700;cursor:pointer}
+
+    .hero{padding:34px 0 20px}.grid{display:grid;gap:24px;align-items:center}.hero-grid{grid-template-columns:1.05fr .95fr}
+    h2.big{margin:0;color:var(--pink);font-size:clamp(52px,10vw,88px);line-height:.92;text-transform:uppercase;letter-spacing:-1px;font-family:'Lilita One', cursive}
+    .subtitle{margin:16px 0 0;font-size:clamp(22px,3vw,34px);font-style:italic;font-weight:800;color:#ffe0ea}
+    .desc{margin:12px 0 0;max-width:650px;color:var(--muted);line-height:1.8;font-size:16px}
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.badge{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--border);font-size:13px;font-weight:700}
+    .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.btn{padding:14px 20px;border:none;border-radius:18px;font-weight:900;cursor:pointer;color:white;box-shadow:var(--shadow);font-size:15px}.btn.primary{background:linear-gradient(90deg,var(--pink2),var(--blue))}.btn.secondary{background:rgba(255,255,255,.08);border:1px solid var(--border)}
+
+    .hero-card{position:relative;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));border:1px solid var(--border);border-radius:34px;padding:24px;box-shadow:var(--shadow)}
+    .glow{position:absolute;border-radius:50%;filter:blur(50px);opacity:.6}.glow.one{width:170px;height:170px;background:rgba(169,240,217,.22);right:-50px;top:-20px}.glow.two{width:170px;height:170px;background:rgba(239,77,162,.16);left:-40px;bottom:-20px}
+    .fee-box{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .fee-price-wrap{padding-top:22px;max-width:260px}
+    .fee-circle{background:var(--mint);color:#173735;border-radius:50%;width:170px;height:170px;display:grid;place-items:center;font-weight:900;text-align:center;padding:18px;box-shadow:var(--shadow);align-self:center;transform:translateY(10px);font-family:'Lilita One', cursive;font-size:24px;line-height:1.05}
+
+    .section{padding:34px 0}.section-head{margin-bottom:18px}.section-head .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--border);font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:#ffdfe8}
+    .section-head h3{margin:14px 0 0;font-size:clamp(28px,4vw,52px);line-height:1.05}.section-head p{margin:12px 0 0;max-width:780px;color:var(--muted);line-height:1.8}
+    .cards{display:grid;gap:18px}.three{grid-template-columns:repeat(3,1fr)}.two{grid-template-columns:repeat(2,1fr)}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .level{padding:22px;min-height:240px;position:relative;overflow:hidden}.level .tag{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;font-weight:900;font-size:14px}.tag.mint{background:var(--mint);color:#173735}.tag.rose{background:var(--pink);color:#382530}.tag.gold{background:var(--gold);color:#302a17}
+    .live-dot{width:10px;height:10px;border-radius:50%;background:#ff1f1f;display:inline-block;box-shadow:0 0 0 rgba(255,31,31,.8);animation:blink 1s infinite}
+    @keyframes blink{0%,100%{opacity:1;transform:scale(1);box-shadow:0 0 0 0 rgba(255,31,31,.75)}50%{opacity:.35;transform:scale(.86);box-shadow:0 0 0 12px rgba(255,31,31,0)}}
+    .live-label{font-size:12px;font-weight:900;color:#ff7b7b;text-transform:uppercase;letter-spacing:.16em}
+    ul.clean{margin:16px 0 0;padding:0;list-style:none} ul.clean li{display:flex;gap:10px;align-items:flex-start;margin:12px 0;color:#f2f2f2;line-height:1.5} ul.clean li:before{content:"•";color:var(--mint);font-size:20px;line-height:1}
+    .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.info-item{background:rgba(255,255,255,.06);border:1px solid var(--border);padding:14px;border-radius:18px;font-weight:700;color:#fff}
+    .contact-list{display:grid;gap:12px}.contact-link{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid var(--border);font-weight:800}
+
+    .footer{width:100%;margin-top:10px;border-top:1px solid var(--border);background:rgba(0,0,0,.08)}
+    .footer-inner{width:100%;max-width:none;padding:4px 18px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center}
+    .footer-copy{color:var(--muted);font-size:13px;line-height:1.1;letter-spacing:.02em}
+    .footer-icons{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+    .footer-icon{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.14)}
+    .footer-icon svg{width:17px;height:17px;display:block}.icon-wa{background:#25d366}.icon-ig{background:linear-gradient(135deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5)}.icon-gf{background:#fff;color:#173735}
+
+    .admin-overlay{position:fixed;inset:0;z-index:50;display:none;align-items:flex-start;justify-content:center;padding:18px;background:rgba(7,15,15,.84);backdrop-filter:blur(12px);overflow-y:auto}.admin-overlay.open{display:flex}
+    .admin-panel{width:min(1100px,100%);margin:20px 0;background:#132f2d;border:1px solid var(--border);border-radius:34px;padding:20px;box-shadow:var(--shadow);max-height:calc(100vh - 40px);overflow-y:auto}
+    .admin-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+    .admin-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.admin-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+    .field label{display:block;font-size:13px;font-weight:800;margin-bottom:7px;color:#fff}
+    .field input,.field textarea,.field select{width:100%;padding:13px 14px;border-radius:18px;border:1px solid #7aa6a1;background:#1d4642;color:#fff;outline:none}.field textarea{min-height:86px;resize:vertical}.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.7)}
+    .field select{appearance:auto}.field select option{background:#173735;color:#fff}.small{font-size:12px;color:var(--muted)}
+    .admin-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;align-items:center}.notice{color:#8ff0c8;font-weight:700}.hidden{display:none}.course-dot-row{display:flex;align-items:center;gap:10px;margin-top:10px;font-weight:900;color:#ff7b7b}
+    .admin-item{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:12px 12px;border:1px solid var(--border);border-radius:18px;background:rgba(255,255,255,.05);margin-bottom:10px}.item-text{flex:1;min-width:0;border:1px solid #7aa6a1;background:#1d4642;color:#fff;border-radius:14px;padding:12px 14px;outline:none}
+    .dots-btn,.delete-btn{border:none;cursor:pointer;border-radius:12px;background:rgba(255,255,255,.08);color:#fff;padding:8px 10px;font-weight:900}.delete-btn{background:rgba(255,80,80,.18);display:none}.delete-btn.show{display:inline-flex}
+
+    @media (max-width: 900px){.hero-grid,.two,.three,.info-grid,.admin-grid,.admin-grid-3{grid-template-columns:1fr}.nav-links{display:none}h2.big{font-size:clamp(44px,15vw,72px)}}
+    @media (min-width: 901px){.menu-btn{display:none}.nav-links{display:flex}.mobile-menu{display:none !important}}
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <div class="wrap">
+      <div class="nav-inner">
+        <div class="brand" id="brandTrigger" title="Double click to open admin">
+          <div class="logo" id="logoBox"><span>G</span></div>
+          <div>
+            <h1 id="brandName">G_Genius</h1>
+            <p id="brandSub">Canva course • Online Classes</p>
+          </div>
+        </div>
+        <div class="nav-links">
+          <button type="button" data-target="home">Home</button>
+          <button type="button" data-target="levels">Levels</button>
+          <button type="button" data-target="details">Details &amp; Contact</button>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span></button>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <button type="button" data-target="home">Home</button>
+        <button type="button" data-target="levels">Levels</button>
+        <button type="button" data-target="details">Details &amp; Contact</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap" id="home">
+    <section class="hero grid hero-grid">
+      <div>
+        <div class="badges">
+          <span class="badge"> Free Registration</span>
+          <span class="badge">Online Classes</span>
+          <span class="badge">Summer Camp / Winter Camp</span>
+        </div>
+        <h2 class="big" id="heroTitle">ADVANCED</h2>
+        <div class="subtitle" id="heroSubtitle">Canva course</div>
+        <div class="desc" id="heroDesc">Premium creative classes for children with a refined dark theme, soft pink typography, and bright accent details.</div>
+        <div class="cta-row"><a class="btn primary" id="joinBtn" href="https://forms.gle/bcdw9GWYhYwoYdMp8" target="_blank" rel="noreferrer">Join Now !!!</a></div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px">
+          <span class="badge">3 classes</span>
+          <span class="badge">9th, 10th &amp; 11th June 2026</span>
+          <span class="badge">Tue • Wed • Thu</span>
+          <span class="badge">5:00 – 5:45 p.m</span>
+          <span class="badge">Age 8 – 12 years</span>
+          <span class="badge">Certificate included</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="glow one"></div><div class="glow two"></div>
+        <div class="fee-box">
+          <div class="fee-price-wrap">
+            <div class="small" style="letter-spacing:.25em;text-transform:uppercase;color:#ffdfe8;font-family:'Bebas Neue', sans-serif;font-size:20px">Course Fee</div>
+            <div style="margin-top:18px;font-size:42px;font-weight:900;font-family:'Lilita One', cursive" id="feeText">Rs 500 only</div>
+            <div id="regBadge" class="badge" style="margin-top:14px;display:inline-flex;">Free Registration</div>
+          </div>
+          <div class="fee-circle" id="regCircle">Free<br/>Registration</div>
+        </div>
+        <div class="cards two" style="margin-top:18px">
+          <div class="card"><div style="font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:#ffdfe8;font-size:12px">Students will learn</div><ul class="clean" id="learnList"></ul></div>
+          <div class="card"><div style="font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:#ffdfe8;font-size:12px">Important info</div><ul class="clean" id="infoList"></ul></div>
+        </div>
+        <div class="card" style="margin-top:18px"><div style="font-weight:900;color:#ffdfe8;margin-bottom:10px">Camp Options</div><div style="display:flex;flex-wrap:wrap;gap:10px" id="campPills"></div></div>
+      </div>
+    </section>
+
+    <section id="levels" class="section">
+      <div class="section-head"><div class="eyebrow">Course Levels</div><h3>Three learning paths</h3><p>Basic, intermediate, and advanced classes are available so every student can learn at the right pace and level.</p></div>
+      <div class="cards three" id="levelCards"></div>
+    </section>
+
+    <section id="details" class="section">
+      <div class="section-head"><div class="eyebrow">Course Details</div><h3>Everything students need to know</h3><p>All the important details are clearly arranged for parents and students.</p></div>
+      <div class="cards two">
+        <div class="card"><div class="info-grid" id="detailGrid"></div></div>
+        <div class="card">
+          <div style="font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:#ffdfe8;font-size:12px">Contact</div>
+          <div class="contact-list" style="margin-top:18px">
+            <a class="contact-link" href="https://forms.gle/bcdw9GWYhYwoYdMp8" target="_blank" rel="noreferrer"><span style="display:flex;align-items:center;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 3.8h6.5L18 8.3V20H7z" stroke="currentColor" stroke-width="1.8"/><path d="M13.5 3.8v4.5H18" stroke="currentColor" stroke-width="1.8"/><path d="M9 12h6M9 15.2h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Google Form</span><span>Open</span></a>
+            <a class="contact-link" href="https://wa.me/923400434334" target="_blank" rel="noreferrer"><span style="display:flex;align-items:center;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20.5 11.9a8.5 8.5 0 0 1-12.9 7.3L3 20l.9-4.2A8.5 8.5 0 1 1 20.5 11.9Z" stroke="currentColor" stroke-width="1.8"/></svg>WhatsApp</span><span>Chat</span></a>
+            <a class="contact-link" href="https://instagram.com/g_genius_official" target="_blank" rel="noreferrer"><span style="display:flex;align-items:center;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/></svg>Instagram</span><span>Follow</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-icons">
+        <a class="footer-icon icon-wa" href="https://wa.me/923400434334" target="_blank" rel="noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none"><path d="M20.5 11.9a8.5 8.5 0 0 1-12.9 7.3L3 20l.9-4.2A8.5 8.5 0 1 1 20.5 11.9Z" stroke="#fff" stroke-width="1.8"/><path d="M9.2 7.9c.2-.5.4-.5.8-.5h.7c.2 0 .5 0 .7.5l.9 2.1c.1.3.1.6-.1.8l-.5.6c-.2.2-.2.5 0 .8.4.8 1.4 1.9 2.3 2.5.3.2.6.2.8 0l.7-.5c.2-.2.6-.2.8-.1l2.1 1c.5.2.5.5.5.8 0 1.4-1.1 2.2-2.3 2.2-1.8 0-4.3-1.1-6.4-3.2-2.1-2.1-3.2-4.6-3.2-6.4 0-1.2.8-2.3 2.2-2.3Z" fill="#fff"/></svg></a>
+        <a class="footer-icon icon-ig" href="https://instagram.com/g_genius_official" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="#fff" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="#fff"/></svg></a>
+        <a class="footer-icon icon-gf" href="https://forms.gle/bcdw9GWYhYwoYdMp8" target="_blank" rel="noreferrer" aria-label="Google Form"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3.8h6.5L18 8.3V20H7z" stroke="currentColor" stroke-width="1.8"/><path d="M13.5 3.8v4.5H18" stroke="currentColor" stroke-width="1.8"/><path d="M9 12h6M9 15.2h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+      </div>
+      <div class="footer-copy">© 2026 G_Genius. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <div class="admin-overlay" id="adminOverlay" aria-hidden="true">
+    <div class="admin-panel">
+      <div class="admin-top">
+        <div><div style="display:flex;align-items:center;gap:10px;font-weight:900;font-size:28px">Admin Panel</div><div class="small">Manage content, courses, and the live class indicator.</div></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><button class="btn secondary" onclick="closeAdmin()">Close</button><button class="btn primary" onclick="saveAdmin()">Save Changes</button><span id="saveMsgInline" class="notice"></span></div>
+      </div>
+
+      <div id="loginBox" class="card" style="max-width:420px;margin:0 auto 16px">
+        <div style="font-weight:900;font-size:20px;margin-bottom:10px">Admin Login</div>
+        <form id="loginForm">
+          <div class="field"><label>Password</label><input id="adminPass" type="password" placeholder="Enter password" autocomplete="current-password" /></div>
+          <div class="admin-actions"><button class="btn primary" type="submit">Login</button></div>
+        </form>
+        <div class="small" style="margin-top:8px">A new login is required every time this panel opens.</div>
+        <div id="loginMsg" class="notice"></div>
+      </div>
+
+      <div id="editorBox" class="hidden">
+        <div class="admin-grid">
+          <div class="field"><label>Brand</label><input id="brand" /></div>
+          <div class="field"><label>Live Course</label>
+            <select id="liveCourse">
+              <option value="Basic">Basic</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
+            </select>
+          </div>
+          <div class="field"><label>Course Fee</label><input id="fee" /></div>
+          <div class="field"><label>Registration Text</label><input id="registration" /></div>
+          <div class="field"><label>Google Forms Link</label><input id="formLink" /></div>
+          <div class="field"><label>WhatsApp</label><input id="whatsapp" /></div>
+          <div class="field"><label>Instagram</label><input id="instagram" /></div>
+        </div>
+
+        <div class="admin-grid-3">
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px"><div style="font-weight:900">Learning Topics</div><button class="btn secondary" type="button" onclick="addLearn()">Add item</button></div>
+            <div id="learnEditor"></div>
+          </div>
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px"><div style="font-weight:900">Important Info</div><button class="btn secondary" type="button" onclick="addInfo()">Add item</button></div>
+            <div id="infoEditor"></div>
+          </div>
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px"><div style="font-weight:900">Levels</div></div>
+            <div id="levelsEditor"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'ggenius_course_site_v9';
+    const PASS_HASH = '816d797f1f1c71bb6104ad8a44416f92eb1a08fdc4bbfa5f33c20b304b2b47a7';
+    const defaultData = {
+      brand: 'G_Genius',
+      fee: 'Rs 500 only',
+      registration: 'Free Registration',
+      formLink: 'https://forms.gle/bcdw9GWYhYwoYdMp8',
+      whatsapp: '03400434334',
+      instagram: 'g_genius_official',
+      liveCourse: 'Advanced',
+      campTypes: ['Summer Camp', 'Winter Camp'],
+      learnings: ['Canva Advanced Tools', 'Presentation Making', 'Colour Mixing', 'Photo Editing', 'Magic Media'],
+      info: ['3 classes', '9th, 10th & 11th June 2026', 'Tuesday, Wednesday, Thursday', 'Time: 5:00 – 5:45 p.m', 'Age limit: 8 – 12 years', 'Certificate will be provided'],
+      levels: [
+        { name: 'Basic', items: ['Canva basics', 'Text and shapes', 'Simple posters', 'Starter designs'] },
+        { name: 'Intermediate', items: ['Presentation making', 'Layout balance', 'Brand colors', 'Creative projects'] },
+        { name: 'Advanced', items: ['Advanced tools', 'Photo editing', 'Colour mixing', 'Magic Media'] }
+      ]
+    };
+
+    let data = loadData();
+    let loggedIn = false;
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const adminOverlay = document.getElementById('adminOverlay');
+    const loginBox = document.getElementById('loginBox');
+    const editorBox = document.getElementById('editorBox');
+    const loginForm = document.getElementById('loginForm');
+
+    function goTo(id){
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      mobileMenu.classList.remove('open');
+    }
+
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    document.getElementById('brandTrigger').addEventListener('dblclick', openAdmin);
+    document.querySelectorAll('[data-target]').forEach(btn => btn.addEventListener('click', () => goTo(btn.getAttribute('data-target'))));
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') { e.preventDefault(); openAdmin(); }
+      if (e.key === 'Escape') closeAdmin();
+    });
+    loginForm.addEventListener('submit', (e) => { e.preventDefault(); loginAdmin(); });
+
+    function closeMenu(){ mobileMenu.classList.remove('open'); }
+    function openAdmin(){
+      loggedIn = false;
+      document.getElementById('adminPass').value = '';
+      document.getElementById('loginMsg').textContent = '';
+      document.getElementById('saveMsgInline').textContent = '';
+      adminOverlay.classList.add('open');
+      adminOverlay.setAttribute('aria-hidden','false');
+      loginBox.classList.remove('hidden');
+      editorBox.classList.add('hidden');
+      renderAdmin();
+      setTimeout(() => {
+        adminOverlay.scrollTop = 0;
+        const input = document.getElementById('adminPass');
+        input.focus();
+        input.select();
+      }, 0);
+    }
+    function closeAdmin(){
+      const active = document.activeElement;
+      if (active && active.blur) active.blur();
+      adminOverlay.classList.remove('open');
+      adminOverlay.setAttribute('aria-hidden','true');
+      loggedIn = false;
+      document.getElementById('adminPass').value = '';
+    }
+
+    async function sha256(text){
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+      return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+    async function loginAdmin(){
+      const pass = document.getElementById('adminPass').value.trim();
+      const msg = document.getElementById('loginMsg');
+      const hash = await sha256(pass);
+      if (hash === PASS_HASH) {
+        loggedIn = true;
+        msg.textContent = '';
+        loginBox.classList.add('hidden');
+        editorBox.classList.remove('hidden');
+        renderAdmin();
+      } else {
+        msg.textContent = 'Wrong password';
+      }
+    }
+
+    function loadData(){
+      try { const saved = localStorage.getItem(STORAGE_KEY); return saved ? { ...defaultData, ...JSON.parse(saved) } : structuredClone(defaultData); }
+      catch { return structuredClone(defaultData); }
+    }
+    function saveData(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+    function courseHeading(){ return `${data.liveCourse} Course`; }
+
+    function renderMain(){
+      document.getElementById('brandName').textContent = data.brand;
+      const logoBox = document.getElementById('logoBox');
+      logoBox.innerHTML = '<img src="logo.jpeg" alt="G_Genius logo" onerror="this.remove(); this.parentElement.innerHTML=\'<span>G</span>\'" />';
+      document.getElementById('brandSub').textContent = 'Canva course • Online Classes';
+      const heroTitle = document.getElementById('heroTitle');
+      heroTitle.textContent = courseHeading();
+      heroTitle.style.fontFamily = "'Lilita One', cursive";
+      document.getElementById('heroSubtitle').textContent = `${data.liveCourse} is live now`;
+      document.getElementById('heroDesc').textContent = 'Premium creative classes for children with a refined dark theme, soft pink typography, and bright accent details.';
+      document.getElementById('feeText').textContent = data.fee;
+      document.getElementById('feeText').style.fontFamily = "'Lilita One', cursive";
+      const regBadge = document.getElementById('regBadge');
+      if (regBadge) {
+        regBadge.textContent = data.registration;
+        regBadge.style.fontFamily = '';
+        regBadge.style.letterSpacing = '.08em';
+      }
+      document.getElementById('regCircle').innerHTML = data.registration.replace(' ', '<br/>');
+      document.getElementById('joinBtn').href = data.formLink;
+      document.getElementById('campPills').innerHTML = data.campTypes.map(c => `<span class="badge">${escapeHtml(c)}</span>`).join('');
+      document.getElementById('learnList').innerHTML = data.learnings.map(t => `<li>${escapeHtml(t)}</li>`).join('');
+      document.getElementById('infoList').innerHTML = data.info.map(t => `<li>${escapeHtml(t)}</li>`).join('');
+      document.getElementById('detailGrid').innerHTML = data.info.map(t => `<div class="info-item">${escapeHtml(t)}</div>`).join('');
+      document.getElementById('levelCards').innerHTML = data.levels.map(level => {
+        const isLive = level.name === data.liveCourse;
+        const tagClass = level.name === 'Basic' ? 'mint' : level.name === 'Intermediate' ? 'rose' : 'gold';
+        return `<div class="card level" style="outline:${isLive ? '2px solid rgba(255,59,59,.55)' : 'none'};box-shadow:${isLive ? '0 0 0 1px rgba(255,59,59,.2), var(--shadow)' : 'var(--shadow)'}"><div class="tag ${tagClass}">${escapeHtml(level.name)}</div>${isLive ? `<div class="course-dot-row"><span class="live-dot"></span><span class="live-label">now live !!</span></div>` : ''}<ul class="clean">${level.items.map(i => `<li>${escapeHtml(i)}</li>`).join('')}</ul></div>`;
+      }).join('');
+    }
+
+    function listItem(text, oninputCode, deleteCode, placeholder){
+      return `
+        <div class="admin-item">
+          <input class="item-text" value="${escapeAttr(text)}" placeholder="${escapeAttr(placeholder)}" oninput="${oninputCode}" />
+          <div style="position:relative;display:flex;align-items:center;gap:8px;flex-shrink:0">
+            <button type="button" class="dots-btn" onclick="toggleDelete(this)">⋯</button>
+            <button type="button" class="delete-btn" onclick="${deleteCode}">Delete</button>
+          </div>
+        </div>
+      `;
+    }
+    function toggleDelete(btn){ const del = btn.parentElement.querySelector('.delete-btn'); if (del) del.classList.toggle('show'); }
+
+    function renderAdmin(){
+      if (!loggedIn) return;
+      document.getElementById('brand').value = data.brand;
+      document.getElementById('fee').value = data.fee;
+      document.getElementById('registration').value = data.registration;
+      document.getElementById('formLink').value = data.formLink;
+      document.getElementById('whatsapp').value = data.whatsapp;
+      document.getElementById('instagram').value = data.instagram;
+      document.getElementById('liveCourse').value = data.liveCourse;
+
+      document.getElementById('learnEditor').innerHTML = data.learnings.map((t,i) => listItem(t, `updateLearning(${i}, this.value)`, `deleteLearning(${i})`, 'Learning item')).join('');
+      document.getElementById('infoEditor').innerHTML = data.info.map((t,i) => listItem(t, `updateInfo(${i}, this.value)`, `deleteInfo(${i})`, 'Info item')).join('');
+      document.getElementById('levelsEditor').innerHTML = data.levels.map((lvl, li) => {
+        const items = lvl.items.map((it, ii) => listItem(it, `updateLevelItem(${li}, ${ii}, this.value)`, `deleteLevelItem(${li}, ${ii})`, 'Level item')).join('');
+        return `
+          <div class="card" style="margin-bottom:12px">
+            <div class="field"><label>Level ${li + 1} Name</label><input value="${escapeAttr(lvl.name)}" oninput="updateLevelName(${li}, this.value)" /></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0 8px"><div style="font-weight:900;color:#fff">Items</div><button class="btn secondary" type="button" onclick="addLevelItem(${li})">Add item</button></div>
+            <div>${items}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateLearning(i, value){ data.learnings[i] = value; renderMain(); }
+    function updateInfo(i, value){ data.info[i] = value; renderMain(); }
+    function updateLevelName(li, value){ data.levels[li].name = value; renderMain(); }
+    function updateLevelItem(li, ii, value){ data.levels[li].items[ii] = value; renderMain(); }
+    function deleteLearning(i){ data.learnings.splice(i,1); renderAdmin(); renderMain(); }
+    function deleteInfo(i){ data.info.splice(i,1); renderAdmin(); renderMain(); }
+    function deleteLevelItem(li, ii){ data.levels[li].items.splice(ii,1); renderAdmin(); renderMain(); }
+    function addLearn(){ data.learnings.push('New item'); renderAdmin(); renderMain(); }
+    function addInfo(){ data.info.push('New detail'); renderAdmin(); renderMain(); }
+    function addLevelItem(li){ data.levels[li].items.push('New item'); renderAdmin(); renderMain(); }
+
+    function saveAdmin(){
+      if (!loggedIn) return;
+      data.brand = document.getElementById('brand').value.trim() || data.brand;
+      data.fee = document.getElementById('fee').value.trim() || data.fee;
+      data.registration = document.getElementById('registration').value.trim() || data.registration;
+      data.formLink = document.getElementById('formLink').value.trim() || data.formLink;
+      data.whatsapp = document.getElementById('whatsapp').value.trim() || data.whatsapp;
+      data.instagram = document.getElementById('instagram').value.trim() || data.instagram;
+      data.liveCourse = document.getElementById('liveCourse').value;
+      data.campTypes = ['Summer Camp', 'Winter Camp'];
+      saveData();
+      renderMain();
+      renderAdmin();
+      const msg = document.getElementById('saveMsgInline');
+      msg.textContent = 'saved';
+      setTimeout(() => { msg.textContent = ''; }, 1800);
+    }
+
+    function escapeHtml(str){ return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+    function escapeAttr(str){ return String(str).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+    adminOverlay.addEventListener('click', function(e){ if (e.target === this) closeAdmin(); });
+    renderMain();
+  </script>
+</body>
+</html>
